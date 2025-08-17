@@ -40,13 +40,13 @@
 
 | SN | Requirement | Choice | Done |
 | ------ | ------ | ------ | ------ |
-| 1. | Programming lang | Typescript | [] |
-| 2. | Http framework | ExpressJS | [] |
-| 3. | Queue | RabbitMQ | [] |
-| 4. | Cron JOBS | ? | [] |
-| 5. | Caching | Redis | [] |
-| 6. | AutoScaling | ? | [] |
-| 7. | Monitoring | Grafana | [] |
-| 8. | Traces | ? | [] |
-| 9. | Logging | ? | [] |
-| 10. | Alerts | ? | [] |
+| 1. | Programming lang | Typescript | [ ] |
+| 2. | Http framework | ExpressJS | [ ] |
+| 3. | Queue | RabbitMQ | [ ] |
+| 4. | Cron JOBS | ? | [ ] |
+| 5. | Caching | Redis | [ ] |
+| 6. | AutoScaling | ? | [ ] |
+| 7. | Monitoring | Grafana | [ ] |
+| 8. | Traces | ? | [ ] |
+| 9. | Logging | ? | [ ] |
+| 10. | Alerts | ? | [ ] |
