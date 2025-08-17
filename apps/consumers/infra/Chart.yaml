@@ -1,0 +1,6 @@
+apiVersion: v2
+name: todo-consumer
+description: A Helm chart for todo consuming msg from event bus.
+type: application
+version: 0.1.0
+appVersion: 0.0.1

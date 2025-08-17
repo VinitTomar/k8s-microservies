@@ -1,0 +1,12 @@
+replicaCount: 1
+
+image:
+  repository: todo-consumer
+  pullPolicy: IfNotPresent
+  tag: "0.0.1"
+
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 80

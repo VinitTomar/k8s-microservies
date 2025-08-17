@@ -1,0 +1,29 @@
+{
+  "name": "consumer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/main.js",
+  "scripts": {
+    "check-types": "tsc --noEmit",
+    "serve": "tsx watch ./src/main.ts",
+    "build": "rm -rf dist && esbuild ./src/main.ts --bundle --outdir=dist --minify",
+    "build:dev": "rm -rf dist && esbuild ./src/main.ts --bundle --outdir=dist --sourcemap --platform=node",
+    "docker-build:dev": "docker build -t todo-consumer:dev .",
+    "postdocker-build:dev": "pnpm run deploy:local",
+    "deploy:local": "helm upgrade --install todo-consumer ./infra  --namespace todo-consumer --create-namespace --force --set image.repository=todo-consumer --set image.tag=dev --set image.pullPolicy=Never",
+    "postdeploy:local": "kubectl rollout restart deployment todo-consumer -n todo-consumer",
+    "uninstall-release": "helm uninstall todo-consumer -n todo-consumer"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.11.0",
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "rabbit-mq-conn": "workspace:*"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.9",
+    "tsx": "^4.20.4"
+  }
+}
