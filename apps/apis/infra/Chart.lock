@@ -1,0 +1,9 @@
+dependencies:
+- name: mysql
+  repository: https://charts.bitnami.com/bitnami
+  version: 14.0.2
+- name: phpmyadmin
+  repository: https://charts.bitnami.com/bitnami
+  version: 19.0.3
+digest: sha256:188131bdede721bdf7a20635a5fa6f2ab8740dd1c93d33ea93b8cfc611119ffd
+generated: "2025-08-15T11:29:12.376406758Z"
