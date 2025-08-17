@@ -1,0 +1,20 @@
+{
+  "name": "mysql-conn",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/main.js",
+  "types": "dist/main.d.ts",
+  "scripts": {
+    "build": "rm -rf dist && tsc --declaration"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.11.0",
+  "dependencies": {
+    "mysql2": "^3.14.3"
+  },
+  "devDependencies": {
+    "@types/node": "^24.2.0"
+  }
+}
