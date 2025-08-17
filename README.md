@@ -32,7 +32,7 @@
   ├── pnpm-workspace.yaml
   ├── .gitigonre
   ├── README.md
-  ├── turbo.json
+  └── turbo.json
 ```
 
 

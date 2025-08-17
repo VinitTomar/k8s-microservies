@@ -4,10 +4,26 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "serve-apis":"pnpm --filter apis serve",
+    "deploy-apis:local":"turbo build:dev --filter=apis",
+    "postdeploy-apis:local":"pnpm docker-build-apis:dev",
+    "docker-build-apis:dev":"pnpm --filter apis docker-build:dev",
+    "uninstall-apis:local":"pnpm --filter apis uninstall-release",
+
+    "deploy-consumer:local":"turbo build:dev --filter=consumer",
+    "postdeploy-consumer:local":"pnpm docker-build-consumer:dev",
+    "docker-build-consumer:dev":"pnpm --filter consumer docker-build:dev",
+    "uninstall-consumer:local":"pnpm --filter consumer uninstall-release",
+
+    "deploy-all:local": "pnpm dlx concurrently \"pnpm deploy-apis:local\" \"pnpm deploy-consumer:local\"",
+    "uninstall-all:local": "pnpm dlx concurrently \"pnpm uninstall-apis:local\" \"pnpm uninstall-consumer:local\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.11.0"
+  "packageManager": "pnpm@10.11.0",
+  "devDependencies": {
+    "turbo": "^2.5.5",
+    "typescript": "5.9.2"
+  }
 }
