@@ -1,0 +1,20 @@
+kube-prometheus-stack:
+  nodeExporter:
+    enabled: false
+
+  grafana:
+    service:
+      type: LoadBalancer
+      port: 80
+    adminUser: admin
+    adminPassword: prom-operator
+
+  prometheus:
+    service:
+      type: LoadBalancer
+      port: 9090
+
+  alertmanager:
+    service:
+      type: LoadBalancer
+      port: 9093

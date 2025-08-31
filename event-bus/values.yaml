@@ -1,3 +1,13 @@
 rabbitmq:
   service:
     type: LoadBalancer
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+      namespace: monitoring
+      interval: 30s
+      scrapeTimeout: 10s
+      scrapeTimeout: 10s
+      labels:
+        release: grafana-prometheus

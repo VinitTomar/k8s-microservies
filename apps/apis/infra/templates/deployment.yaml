@@ -46,6 +46,10 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: {{ .Values.service.targetPort }}
+          {{- if .Values.metrics.enabled }}
+            - name: {{ .Values.metrics.portName }}
+              containerPort: {{ .Values.metrics.port }}
+          {{- end }}
       #     {{- with .Values.livenessProbe }}
       #     livenessProbe:
       #       {{- toYaml . | nindent 12 }}

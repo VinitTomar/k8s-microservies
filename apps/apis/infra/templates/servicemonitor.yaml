@@ -1,0 +1,18 @@
+{{- if .Values.metrics.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ include "apis.fullname" . }}
+  labels:
+    release: {{ .Values.metrics.labels.release }}
+    app: {{ include "apis.fullname" . }}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: {{ include "apis.fullname" . }}
+      app.kubernetes.io/name: {{ include "apis.name" . }}
+  endpoints:
+    - port: {{ .Values.metrics.portName }}
+      path: /metrics
+      interval: 15s
+{{- end }}

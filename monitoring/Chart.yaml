@@ -1,0 +1,10 @@
+apiVersion: v2
+name: monitoring
+description: A Helm chart monitoring all microservices.
+type: application
+version: 0.1.0
+appVersion: 0.0.1
+dependencies:
+  - name: kube-prometheus-stack
+    version: 76.4.0
+    repository: https://prometheus-community.github.io/helm-charts

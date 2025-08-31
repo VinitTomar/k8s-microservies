@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "deploy-event-bus:dev": "helm upgrade --install dev-rbt-mq ./  --namespace event-bus --create-namespace"
+    "deploy-event-bus:local": "helm upgrade --install dev-rbt-mq ./  --namespace event-bus --create-namespace"
   },
   "keywords": [],
   "author": "",

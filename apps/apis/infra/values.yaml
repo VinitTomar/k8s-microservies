@@ -57,6 +57,15 @@ service:
   port: 3080
   targetPort: 3080
 
+metrics:
+  portName: metrics
+  port: 3081
+  targetPort: 3081
+  enabled: true
+  namespace: grafana-prometheus
+  labels:
+    release: grafana-prometheus
+
 # This block is for setting up the ingress for more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/
 # ingress:
 #   enabled: false
