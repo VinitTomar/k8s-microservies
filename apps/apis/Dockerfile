@@ -8,4 +8,4 @@ COPY .env .env
 EXPOSE 3080
 EXPOSE 3081
 
-CMD ["node", "dist/main.js"]
+CMD ["node", "-r", "./dist/tracing.js", "dist/main.js"]

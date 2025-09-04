@@ -1,4 +1,6 @@
 import 'dotenv/config';
+
+import { trace } from '@opentelemetry/api';
 import express, { RequestHandler } from 'express';
 import promBundle from 'express-prom-bundle';
 
@@ -15,11 +17,6 @@ const metricsMiddleware = promBundle({
   includeStatusCode: true,
   metricsPath: "/metrics",
   httpDurationMetricName: 'todo_apis_http_request_duration_seconds'
-  // promClient: {
-  //   collectDefaultMetrics: {
-  //     prefix: "todo_apis_",
-  //   },
-  // },
 }) as unknown as RequestHandler;
 app.use(metricsMiddleware);
 
@@ -38,17 +35,30 @@ type TodoQueueMsg = {
 }
 
 function sendToQueue(action: string, todo:TodoQueueMsg) {
-  if (!channel) return;
-  const queueName = process.env.RABBIT_MQ_NAME!;
-  const payload = {
-    action,
-    todo,
-    time: new Date().toISOString(),
-  };
-  channel.sendToQueue(queueName, Buffer.from(JSON.stringify(payload)), {
-    persistent: true,
+  const tracer = trace.getTracer('todo-api');
+  
+  tracer.startActiveSpan('sendToQueue', span => {
+    span.setAttribute('todo-title', todo.title);
+    
+    try {
+      if (!channel) return;
+
+      const queueName = process.env.RABBIT_MQ_NAME!;
+      const payload = {
+        action,
+        todo,
+        time: new Date().toISOString(),
+      };
+      channel.sendToQueue(queueName, Buffer.from(JSON.stringify(payload)), {
+        persistent: true,
+      });
+      console.log(`📩 Sent to queue:`, payload);
+
+    } finally {
+      span.end();
+    }
   });
-  console.log(`📩 Sent to queue:`, payload);
+
 }
 
 // --- DB init ---

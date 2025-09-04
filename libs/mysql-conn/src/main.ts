@@ -25,6 +25,8 @@ if (!process.env.MYSQL_PASSWORD) {
 }
 const password = process.env.MYSQL_PASSWORD;
 
+console.log("Preparing mysql connection pool");
+
 const pool = mysql.createPool({
   host,
   port,

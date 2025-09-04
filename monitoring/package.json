@@ -2,10 +2,9 @@
   "name": "monitoring",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "deploy-monitoring:local": "helm upgrade --install grafana-prometheus ./  --namespace monitoring --create-namespace",
-    "uninstall-monitoring:local": "helm uninstall grafana-prometheus --namespace monitoring"
+    "deploy:local": "helm upgrade --install grafana-prometheus ./  --namespace monitoring --create-namespace",
+    "uninstall:local": "helm uninstall grafana-prometheus --namespace monitoring"
   },
   "keywords": [],
   "author": "",

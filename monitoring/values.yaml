@@ -9,6 +9,12 @@ kube-prometheus-stack:
     adminUser: admin
     adminPassword: prom-operator
 
+    additionalDataSources:
+      - name: Tempo
+        type: tempo
+        access: proxy
+        url: http://tempo-query-frontend.monitoring.svc.cluster.local:3200
+
   prometheus:
     service:
       type: LoadBalancer
@@ -18,3 +24,23 @@ kube-prometheus-stack:
     service:
       type: LoadBalancer
       port: 9093
+
+tempo-distributed:
+  enabled: true
+  fullnameOverride: tempo
+
+  traces:
+    otlp:
+      http:
+        enabled: true
+      grpc:
+        enabled: true
+
+  metricsGenerator:
+    enabled: true
+    remoteWriteUrl: http://grafana-prometheus-kube-pr-prometheus.monitoring.svc.cluster.local:9090/api/v1/write
+    storagePath: /var/tempo/generator
+    resources: {}
+    persistence:
+      enabled: false
+

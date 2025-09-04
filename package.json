@@ -15,6 +15,8 @@
     "docker-build-consumer:dev":"pnpm --filter consumer docker-build:dev",
     "uninstall-consumer:local":"pnpm --filter consumer uninstall-release",
 
+    "deploy-monitoring:local": "pnpm --filter monitoring deploy:local",
+
     "deploy-all:local": "pnpm dlx concurrently \"pnpm deploy-apis:local\" \"pnpm deploy-consumer:local\"",
     "uninstall-all:local": "pnpm dlx concurrently \"pnpm uninstall-apis:local\" \"pnpm uninstall-consumer:local\""
   },
