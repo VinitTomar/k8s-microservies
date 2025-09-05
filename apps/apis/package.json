@@ -8,8 +8,10 @@
     "check-types": "tsc --noEmit",
     "build": "rm -rf dist && esbuild ./src/main.ts ./src/tracing.ts --bundle --outdir=dist --minify --platform=node",
     "build:dev": "rm -rf dist && esbuild src/**/*.ts --outdir=dist --platform=node --format=cjs --sourcemap --out-extension:.js=.js",
+    "build-deps-tar": "ts-node ../../tools/tar-app-deps.ts --app ./",
+    "predocker-build:dev": "pnpm run build-deps-tar",
     "docker-build:dev": "docker build -f ./Dockerfile -t todo-apis:dev ../../",
-    "postdocker-build:dev": "pnpm run deploy:local",
+    "postdocker-build:dev": "rm ../../apis.tar.gz && pnpm run deploy:local",
     "deploy:local": "helm upgrade --install todo-apis ./infra  --namespace todo-apis --create-namespace --force --set image.repository=todo-apis --set image.tag=dev --set image.pullPolicy=Never",
     "postdeploy:local": "kubectl rollout restart deployment todo-apis -n todo-apis",
     "uninstall-release": "helm uninstall todo-apis -n todo-apis"
