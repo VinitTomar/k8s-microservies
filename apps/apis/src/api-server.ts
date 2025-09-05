@@ -39,6 +39,7 @@ function sendToQueue(action: string, todo:TodoQueueMsg) {
   
   tracer.startActiveSpan('sendToQueue', span => {
     span.setAttribute('todo-title', todo.title);
+    span.setAttribute('todo-id', todo.id);
     
     try {
       if (!channel) return;

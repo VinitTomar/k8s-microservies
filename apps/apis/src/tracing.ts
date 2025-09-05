@@ -2,7 +2,6 @@ import 'dotenv/config';
 import { NodeSDK } from '@opentelemetry/sdk-node';
 import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node';
 import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http';
-// import { MySQL2Instrumentation } from '@opentelemetry/instrumentation-mysql2';
 
 console.log("Preparing auto node instrumentation");
 
@@ -15,13 +14,6 @@ const sdk = new NodeSDK({
   serviceName: 'todo-api',
   instrumentations: [
     getNodeAutoInstrumentations(),
-    // new MySQL2Instrumentation()
-    // new MySQL2Instrumentation({
-    //   requireParentSpan: false,
-    //   responseHook: (span, responseInfo) => {
-    //     span.setAttribute('db.response', JSON.stringify(responseInfo));
-    //   },
-    // }),
   ],
 });
 
